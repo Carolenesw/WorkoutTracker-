@@ -31,4 +31,9 @@ const workoutSchema = new schema ({
             type: Number
         }
     }]
-})
+});
+
+
+// create Workout variable and export to seeds file
+const Workout = mongoose.model("Workout", workoutSchema)
+module.exports = Workout
