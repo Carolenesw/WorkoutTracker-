@@ -15,12 +15,13 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // create connection using mongoose
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutDB", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true
+
 });
 
 // connect to routes
-// app.use()
+app.use(require("./routes/api"))
 
 // port for listen connectionls
 
