@@ -43,5 +43,22 @@ router.post("/api/workouts", ({ body }, res) => {
       });
   });
 
+  // add new exercise to route/array
+router.put("/api/workouts/:id", (req, res) => {
+    const objID = req.params.objID
+    const exercise = req.body
+
+    console.log("workout:", exercise)
+    console.log("Object ID:", objID)
+
+    db.Workout.findByIdAndUpdate({_id: objID},
+        {$push: {exercise}})
+        .then(dbWorkout => {
+            res.json(dbWorkout);
+        })
+        .catch(error => {
+            res.status(400).json(error);
+        });
+});
 
 module.exports = router;
