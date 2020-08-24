@@ -19,7 +19,7 @@ router.get("/stats", (req, res) => {
 
 // create api routes to database
 router.get("/api/workouts", (req, res) => {
-    console.log("Inside last workout route");
+    console.log("Work database located");
     db.Workout.find({})
     .then(dbWorkout => {
         res.json(dbWorkout);
@@ -29,7 +29,19 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
+// create new workout route
+router.post("/api/workouts", ({ body }, res) => {
+    console.log("New Workout route created")
+    console.log("New array:", body)
 
+    db.Workout.create(body)
+      .then(dbWorkout => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+       res.status(400).json(error);
+      });
+  });
 
 
 module.exports = router;
