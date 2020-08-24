@@ -43,13 +43,12 @@ router.post("/api/workouts", ({ body }, res) => {
       });
   });
 
-  // add new exercise to route/array
+  // add new exercise to route and push to array
 router.put("/api/workouts/:id", (req, res) => {
     const objID = req.params.objID
     const exercise = req.body
 
-    console.log("workout:", exercise)
-    console.log("Object ID:", objID)
+    console.log("New work workout:", exercise)
 
     db.Workout.findByIdAndUpdate({_id: objID},
         {$push: {exercise}})
@@ -59,6 +58,18 @@ router.put("/api/workouts/:id", (req, res) => {
         .catch(error => {
             res.status(400).json(error);
         });
+});
+
+// view multiple combine workouts on stats page
+router.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+    .then(dbWorkout => {
+        res.json(dbWorkout);
+        console.log("Workout completed:", dbWorkout)
+    })
+    .catch(error => {
+        res.status(404).json(error);
+    });
 });
 
 module.exports = router;
