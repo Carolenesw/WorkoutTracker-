@@ -1,6 +1,5 @@
 // require router and module file path 
 const router = require("express").Router();
-// const Workout = require("../models/models");
 
 const path = require("path");
 
@@ -45,10 +44,12 @@ router.post("/api/workouts", ({ body }, res) => {
 
   // add new exercise to route and push to array
 router.put("/api/workouts/:id", (req, res) => {
-    const objID = req.params.objID
+    // const objID = req.params.objID
+    const objID = req.params.id
     const exercise = req.body
 
     console.log("New work workout:", exercise)
+    console.log("Workout id:", objID)
 
     db.Workout.findByIdAndUpdate({_id: objID},
         {$push: {exercise}})
@@ -60,11 +61,14 @@ router.put("/api/workouts/:id", (req, res) => {
         });
 });
 
+
 // view multiple combine workouts on stats page
 router.get("/api/workouts/range", (req, res) => {
     db.Workout.find({})
+    .populate("exercises")
     .then(dbWorkout => {
-        res.json(dbWorkout);
+        res.json(dbWorkout)
+        
         console.log("Workout completed:", dbWorkout)
     })
     .catch(error => {
