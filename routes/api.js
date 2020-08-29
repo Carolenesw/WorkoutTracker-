@@ -19,7 +19,7 @@ router.get("/stats", (req, res) => {
 // create api routes to database
 router.get("/api/workouts", (req, res) => {
     console.log("Work database located");
-    db.Workout.find({})
+    db.find({})
     .then(dbWorkout => {
         res.json(dbWorkout);
     })
@@ -30,7 +30,7 @@ router.get("/api/workouts", (req, res) => {
 
 // sort info in database
 router.get("/api/workouts", (req, res) => {
-    db.Workout.find({})
+    db.find({})
       .sort({ date: -1 })
       .then(dbExercise => {
         res.json(dbExercise);
@@ -45,7 +45,7 @@ router.post("/api/workouts", ({ body }, res) => {
     console.log("New Workout route created")
     console.log("New array:", body)
 
-    db.Workout.create(body)
+    db.create(body)
       .then(dbWorkout => {
         res.json(dbWorkout);
       })
@@ -63,7 +63,7 @@ router.put("/api/workouts/:id", (req, res) => {
     console.log("New work workout:", exercise)
     console.log("Workout id:", objID)
 
-    db.Workout.findByIdAndUpdate({_id: objID},
+    db.findByIdAndUpdate({_id: objID},
         {$push: {exercise:exercise}})
         .then(dbWorkout => {
             res.json(dbWorkout);
@@ -89,7 +89,7 @@ router.put("/api/workouts/:id", (req, res) => {
 // });
 
 router.get("/api/workouts/range", (req, res) => {
-    db.Workout.find({})
+    db.find({})
       .sort({ date: -1 })
       .then(dbExercise => {
         res.json(dbExercise);
