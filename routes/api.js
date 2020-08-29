@@ -4,7 +4,7 @@ const router = require("express").Router();
 const path = require("path");
 
 // require db workout model
-let db = require("../models/workout_model");
+let db = require("../models/models");
 
 
 // create routes to link html pages/routes
