@@ -39,13 +39,6 @@ const ExerciseSchema = new Schema({
     type: Number,
     trim: true
   }, 
-//   exercises: [
-//     {
-//       type: Schema.Types.ObjectId,
-//       ref: "Exercise"
-//     }
-//   ]
-
 });
 
 // use schema to create model and export to seeds file and route
