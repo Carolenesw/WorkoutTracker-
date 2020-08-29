@@ -28,6 +28,18 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
+// sort info in database
+router.get("/api/workouts", (req, res) => {
+    db.Workout.find({})
+      .sort({ date: -1 })
+      .then(dbExercise => {
+        res.json(dbExercise);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  });
+
 // create new workout route
 router.post("/api/workouts", ({ body }, res) => {
     console.log("New Workout route created")
@@ -63,19 +75,29 @@ router.put("/api/workouts/:id", (req, res) => {
 
 
 // view multiple combine workouts on stats page
+// router.get("/api/workouts/range", (req, res) => {
+//     db.Workout.find({})
+//     .populate("exercise")
+//     .then(dbWorkout => {
+//         res.json(dbWorkout)
+        
+//         console.log("Workout completed:", dbWorkout)
+//     })
+//     .catch(error => {
+//         res.status(404).json(error);
+//     });
+// });
+
 router.get("/api/workouts/range", (req, res) => {
     db.Workout.find({})
-    .populate("exercise")
-    .then(dbWorkout => {
-        res.json(dbWorkout)
-        
-        console.log("Workout completed:", dbWorkout)
-    })
-    .catch(error => {
-        res.status(404).json(error);
-    });
-});
-
-
+      .sort({ date: -1 })
+      .then(dbExercise => {
+        res.json(dbExercise);
+        console.log("db", dbExercise)
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  });
 
 module.exports = router;
