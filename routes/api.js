@@ -73,9 +73,13 @@ router.put("/api/workouts/:id", (req, res) => {
 // view multiple combine workouts on stats page
 router.get("/api/workouts/range", (req, res) => {
   db.Workout.find({})
-    .populate("exercises")
-    .then((data) => {
-      res.json(data);
+    .populate("exercise")
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+
+      console.log("workout stats:", dbWorkout )
+
+
     })
     .catch((err) => {
       res.json(err);
