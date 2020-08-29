@@ -5,7 +5,7 @@ const path = require("path");
 
 // require db workout model
 let db = require("../models/workout_model");
-// const mongoose = require("mongoose");
+
 
 // create routes to link html pages/routes
 router.get("/exercise", (req, res) => {
@@ -52,7 +52,7 @@ router.put("/api/workouts/:id", (req, res) => {
     console.log("Workout id:", objID)
 
     db.Workout.findByIdAndUpdate({_id: objID},
-        {$push: {exercise}})
+        {$push: {exercise:exercise}})
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
@@ -65,7 +65,7 @@ router.put("/api/workouts/:id", (req, res) => {
 // view multiple combine workouts on stats page
 router.get("/api/workouts/range", (req, res) => {
     db.Workout.find({})
-    .populate("exercises")
+    .populate("exercise")
     .then(dbWorkout => {
         res.json(dbWorkout)
         
@@ -75,5 +75,7 @@ router.get("/api/workouts/range", (req, res) => {
         res.status(404).json(error);
     });
 });
+
+
 
 module.exports = router;
