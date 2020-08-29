@@ -1,6 +1,9 @@
-const router = require("express").Router(),
- db = require("../models/workout_model");
-let path = require("path");
+// // require router and module file path 
+const router = require("express").Router();
+const path = require("path");
+
+let db = require("../models/workout_model");
+
 
 router.get("/api/workouts", (req, res) => {
   db.find({})
@@ -64,3 +67,5 @@ router.get("/api/workouts/range", (req, res) => {
 });
 
 module.exports = router;
+
+
