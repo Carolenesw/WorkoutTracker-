@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
 
+// create route for user to have access to app
+require('dotenv').config();
+
 // set up connection path
 const PORT = process.env.PORT || 8000;
 
