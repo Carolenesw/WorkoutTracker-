@@ -5,7 +5,9 @@ const logger = require("morgan");
 const path = require("path");
 
 // create route for user to have access to app
-require('dotenv').config();
+// require('dotenv').config();
+
+app.use(logger("dev"));
 
 // set up connection path
 const PORT = process.env.PORT || 8000;
@@ -20,7 +22,8 @@ app.use(express.static("public"));
 // create connection using mongoose
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 useUnifiedTopology: true,
-useNewUrlParser: true
+useNewUrlParser: true,
+useFindAndModify: false,
 
 });
 
