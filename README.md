@@ -12,7 +12,7 @@
 ## Technology
 
 - MongoDB
-- Mongoose
+- mongoose
 - Nodejs
 - Express
 - JavaScript
