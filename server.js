@@ -2,7 +2,7 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-// const compression = require("compression");
+const compression = require("compression");
 
 // create route for user to have access to app
 require('dotenv').config()
@@ -13,7 +13,7 @@ const app = express();
 
 app.use(logger("dev"));
 
-// app.use(compression());
+app.use(compression());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
