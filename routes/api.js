@@ -20,10 +20,10 @@ router.get("/api/workouts", (req, res) => {
     .then((dbWorkout) => {
       res.json(dbWorkout);
 
-    //   console.log("Populate:", dbWorkout);
+      //   console.log("Populate:", dbWorkout);
       console.log("Work database located");
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(400).json(err);
     });
 });
@@ -37,37 +37,39 @@ router.post("/api/workouts", ({ body }, res) => {
       console.log("New Workout route created");
       console.log("New array:", body);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(400).json(err);
     });
 });
 
-
- // add new exercise to route and push to array
+// add new exercise to route and push to array
 router.put("/api/workouts/:id", (req, res) => {
-  db.Exercise.create(req.body).then((response) => {
+  //   db.Exercise.create(req.body).then((response) => {
 
-    console.log("Create Workout: ", response);
+  //     console.log("Create Workout: ", response);
 
-    const objID = req.params.id;
-    let exercise = {
-      $push: { exercises: response._id },
-      $inc: { totalDuration: response.duration },
-    };
+  //     const objID = req.params.id;
+  //     let exercise = {
+  //       $push: { exercises: response._id },
+  //       $inc: { totalDuration: response.duration },
+  //     };
 
-    console.log("Last workout:", exercise);
-    console.log("Workout id:", objID);
+  //     console.log("Last workout:", exercise);
+  //     console.log("Workout id:", objID);
 
-    db.Workout.findByIdAndUpdate(objID, exercise, { new: true })
-      .then((exercise) => {
-        console.log("exercise:", exercise);
+  db.Workout.findByIdAndUpdate(
+    req.params.id,
+    { $push: { exercises: req.body } },
+    { new: true }
+  )
+    .then((exercise) => {
+      console.log("exercise:", exercise);
 
-        res.json(exercise);
-      })
-      .catch(err => {
-        res.status(400).json(err);
-      });
-  });
+      res.json(exercise);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
 
 // view multiple combine workouts on stats page
@@ -77,11 +79,9 @@ router.get("/api/workouts/range", (req, res) => {
     .then((dbWorkout) => {
       res.json(dbWorkout);
 
-      console.log("workout stats:", dbWorkout )
-
-
+      console.log("workout stats:", dbWorkout);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(400).json(err);
     });
 });
