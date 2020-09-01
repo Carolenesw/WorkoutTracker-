@@ -7,12 +7,12 @@ const path = require("path");
 // create route for user to have access to app
 require('dotenv').config();
 
-app.use(logger("dev"));
-
 // set up connection path
 const PORT = process.env.PORT || 8000;
 
 const app = express();
+
+app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
