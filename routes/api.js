@@ -44,18 +44,6 @@ router.post("/api/workouts", ({ body }, res) => {
 
 // add new exercise to route and push to array
 router.put("/api/workouts/:id", (req, res) => {
-  //   db.Exercise.create(req.body).then((response) => {
-
-  //     console.log("Create Workout: ", response);
-
-  //     const objID = req.params.id;
-  //     let exercise = {
-  //       $push: { exercises: response._id },
-  //       $inc: { totalDuration: response.duration },
-  //     };
-
-  //     console.log("Last workout:", exercise);
-  //     console.log("Workout id:", objID);
 
   db.Workout.findByIdAndUpdate(
     req.params.id,

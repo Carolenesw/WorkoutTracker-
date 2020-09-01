@@ -65,12 +65,12 @@ Email: carolenesw@gmail.com
 https://github.com/Carolenesw/WorkoutTracker-
 
 * Deployed URL: 
-https://fitnesstracker-082020-v2.herokuapp.com/
+https://fitnesstracker-082020.herokuapp.com
 
 ## Images
 
-<img src="public/asset/image/last_workout.png">
+<img src="public/asset/image/lastwork_stats.png">
 
-<img src="public/asset/image/charts.png">
+<img src="public/asset/image/dashboard.png">
 
 
